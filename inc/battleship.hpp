@@ -20,6 +20,11 @@
 # include "ship.hpp"
 # include "board.hpp"
 
+# define RESET "\033[0m"
+# define BOLD "\033[1m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+
 typedef enum e_status
 {
 	WATER,
@@ -39,5 +44,8 @@ typedef struct s_pos
 	int	x;
 	int	y;
 }		t_pos;
+
+/* Error handler */
+void	puterror(const char *s);
 
 #endif

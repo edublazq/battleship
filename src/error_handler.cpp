@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   board.hpp                                          :+:      :+:    :+:   */
+/*   error_handler.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edblazqu <edblazqu@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 00:38:08 by edblazqu          #+#    #+#             */
-/*   Updated: 2026/03/13 00:38:09 by edblazqu         ###   ########.fr       */
+/*   Created: 2026/03/13 11:16:32 by edblazqu          #+#    #+#             */
+/*   Updated: 2026/03/13 11:16:34 by edblazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "battleship.hpp"
+#include "battleship.hpp"
 
-class Board
+void	puterror(const char *s)
 {
-	private:
-		int								_rows;
-		int								_cols;
-		int								_n_ships;
-		std::vector<std::vector<Box>>	_board;
-		Ship							*_ships;
-	public:
-		Board();
-		Board(int rows, int cols);
-		bool	putShip(int size, t_pos pos, t_orientation orientation);
-		bool	randPutShip(void);
-};
+	std::cerr << BOLD << RED << s << RESET << std::endl;
+}
