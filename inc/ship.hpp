@@ -22,10 +22,13 @@ class	Ship
 		t_pos			_pos;
 	public:
 		explicit Ship(int size, t_orientation orientation, t_pos pos);
+
 		int		getSize(void) const;
-		void	setSize(int size);
 		t_pos	getPos(void) const;
+
+		void	setSize(int size);
 		void	setPos(t_pos pos);
+		
 		void	impact(void);
 		bool	isDead(void) const;
 		bool	isHere(t_pos pos) const;

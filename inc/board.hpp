@@ -19,10 +19,11 @@ class Board
 		int								_cols;
 		int								_n_ships;
 		std::vector<std::vector<Box>>	_board;
-		Ship							*_ships;
+		std::list<Ship>					_ships;
 	public:
 		Board();
 		Board(int rows, int cols);
+		
 		bool	putShip(int size, t_pos pos, t_orientation orientation);
 		bool	randPutShip(void);
 };

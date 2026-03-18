@@ -21,8 +21,10 @@ class Box
 		t_status	_status;
 	public:
 		explicit Box();
+
 		void		setStatus(t_status status);
 		t_status	getStatus(void) const;
+		
 		bool		hasBoat(void) const;
 		bool		shoot(void);
 		char		toChar(void) const;
