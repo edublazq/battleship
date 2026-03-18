@@ -24,6 +24,11 @@ class Board
 		Board();
 		Board(int rows, int cols);
 		
-		bool	putShip(int size, t_pos pos, t_orientation orientation);
-		bool	randPutShip(void);
+		int			getRows() const { return _rows; }
+		int			getCols() const { return _cols; }
+
+		bool		putShip(int size, t_pos pos, t_orientation orientation);
+		bool		randPutShip(void);
+		bool		shoot(t_pos pos);
+
 };

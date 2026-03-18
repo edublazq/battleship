@@ -15,6 +15,7 @@
 # include <iostream>
 # include <list>
 # include <cstdlib>
+# include <ctime>
 # include <stdexcept>
 # include <vector>
 # include "box.hpp"

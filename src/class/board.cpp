@@ -62,3 +62,64 @@ bool	Board::putShip(int size, t_pos pos, t_orientation orientation)
 	this->_ships.push_back(ship); //vengo de C y esto es muy comodo
 	return (true);
 }
+
+static bool	randShipManager(Board *board, int size)
+{
+	bool		control;
+	int			attempt;
+	t_pos		pos;
+
+	control = false;
+	attempt = 0;
+	while (!control && attempt < 1000)
+	{
+		pos.x = std::rand() % board->getCols();
+		pos.y = std::rand() % board->getRows();
+		if (board->putShip(size, pos, HORIZONTAL))
+			control = true;
+		else if (control = board->putShip(size, pos, VERTICAL))
+			control = true;
+		attempt++;
+	}
+	if (attempt == 1000)
+	{
+		puterror("Impossible to put the ships");
+		return (false);
+	}
+	return (true);
+}
+
+bool	Board::randPutShip(void)
+{
+	if (!randShipManager(this, 4))
+		return (false);
+	for (uint8_t i = 0; i < 2; i++)
+		if (!randShipManager(this, 3))
+			return (false);
+	for (uint8_t i = 0; i < 3; i++)
+		if (!randShipManager(this, 2))
+			return (false);
+	for (uint8_t i = 0; i < 4; i++)
+		if (!randShipManager(this, 1))
+			return (false);
+	return (true);
+}
+
+bool	Board::shoot(t_pos pos)
+{
+	if (pos.x < 0 || pos.y < 0)
+		return (false);
+	if (pos.x >= _cols || pos.y >= _rows)
+		return (false);
+	if (_board[pos.x][pos.y].getStatus() == WATER)
+	{
+		_board[pos.x][pos.y].setStatus(SHOOTED_WATER);
+		return (true);
+	}
+	if (_board[pos.x][pos.y].getStatus() == SHIP)
+	{
+		_board[pos.x][pos.y].setStatus(SHOOTED);
+		return (true);
+	}
+	return (false);
+}
