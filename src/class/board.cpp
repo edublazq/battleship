@@ -136,13 +136,30 @@ bool	Board::everyoneSink(void)
 
 void	Board::showBoard(bool flag)
 {
-	if (flag == false)
+	if (flag == true)
 	{
 		for (int i = 0; i < getRows(); i++)
 		{
 			for (int j = 0; j < getCols(); j++)
 			{
 				std::cout << GREEN << _board[i][j].toChar() << RESET;
+			}
+			std::cout << std::endl;
+		}
+	}
+	if (flag == false)
+	{
+		char	c;
+
+		for (int i = 0; i < getRows(); i++)
+		{
+			for (int j = 0; j < getCols(); j++)
+			{
+				c = _board[i][j].toChar();
+				if (c != 'B')
+					std::cout << GREEN << _board[i][j].toChar() << RESET;
+				else
+					std::cout << GREEN << "~" << RESET;
 			}
 			std::cout << std::endl;
 		}

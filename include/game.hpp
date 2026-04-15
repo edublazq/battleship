@@ -6,13 +6,15 @@
 class Game
 {
 private:
-	
+	Board	_playerBoard;
+	Board	_computerBoard;
+	bool	_turn;
+	int		_turn_count;
+	bool	_finished;
 public:
-	Game();
-};
+	Game(void);
 
-Game::Game(/* args */)
-{
-}
+	void	startGame(void);
+};
 
 #endif
