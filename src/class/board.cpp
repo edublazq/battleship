@@ -123,3 +123,35 @@ bool	Board::shoot(t_pos pos)
 	}
 	return (false);
 }
+
+bool	Board::everyoneSink(void)
+{
+	for (std::list<Ship>::iterator i = _ships.begin(); i != _ships.end(); i++)
+	{
+		if (!i->isDead())
+			return (false);
+	}
+	return (true);
+}
+
+void	Board::showBoard(bool flag)
+{
+	if (flag == false)
+	{
+		for (int i = 0; i < getRows(); i++)
+		{
+			for (int j = 0; j < getCols(); j++)
+			{
+				std::cout << GREEN << _board[i][j].toChar() << RESET;
+			}
+			std::cout << std::endl;
+		}
+	}
+}
+
+bool	Board::validatePos(t_pos pos)
+{
+	if (pos.x < getCols() && pos.y < getRows())
+		return (true);
+	return (false);
+}

@@ -28,7 +28,9 @@ class Board
 		int			getCols() const { return _cols; }
 
 		bool		putShip(int size, t_pos pos, t_orientation orientation);
+		bool		everyoneSink(void);
 		bool		randPutShip(void);
 		bool		shoot(t_pos pos);
-
+		bool		validatePos(t_pos pos);
+		void		showBoard(bool flag);
 };

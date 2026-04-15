@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #ifndef BATTLESHIP_HPP
-# define BATTLESHIP_HPP	
+# define BATTLESHIP_HPP
+
 # include <iostream>
 # include <list>
 # include <cstdlib>
