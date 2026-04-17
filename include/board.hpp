@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "battleship.hpp"
+#ifndef BOARD_HPP
+# define BOARD_HPP
+
+# include "ship.hpp"
+# include "box.hpp"
+# include "types.hpp"
 
 class Board
 {
@@ -26,6 +31,7 @@ class Board
 		
 		int			getRows() const { return _rows; }
 		int			getCols() const { return _cols; }
+		e_status	getStatus(t_pos pos) {return _board[pos.x][pos.y].getStatus(); }
 
 		bool		putShip(int size, t_pos pos, t_orientation orientation);
 		bool		everyoneSink(void);
@@ -34,3 +40,5 @@ class Board
 		bool		validatePos(t_pos pos);
 		void		showBoard(bool flag);
 };
+
+#endif

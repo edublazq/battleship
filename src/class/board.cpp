@@ -77,7 +77,7 @@ static bool	randShipManager(Board *board, int size)
 		pos.y = std::rand() % board->getRows();
 		if (board->putShip(size, pos, HORIZONTAL))
 			control = true;
-		else if (control = board->putShip(size, pos, VERTICAL))
+		else if (control == board->putShip(size, pos, VERTICAL))
 			control = true;
 		attempt++;
 	}

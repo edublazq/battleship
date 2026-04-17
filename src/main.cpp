@@ -14,5 +14,8 @@
 
 int	main(void)
 {
-	std::srand(std::time(NULL));
+	Game	game;
+
+	std::srand(std::time(nullptr));
+	game.startGame();
 }

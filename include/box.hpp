@@ -13,7 +13,7 @@
 #ifndef BOX_HPP
 # define BOX_HPP
 
-# include "battleship.hpp"
+# include "types.hpp"
 
 class Box
 {

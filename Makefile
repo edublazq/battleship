@@ -1,25 +1,23 @@
-# Compiler and flags
-CC = c++
-CFLAGS = -Wall -Wextra -std=c99
-TARGET = battleship
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -Iinclude
+SRCS = $(wildcard src/*.cpp) $(wildcard src/class/*.cpp)
+OBJS = $(SRCS:.cpp=.o)
+EXECUTABLE = battleship
 
-# Source files
-SOURCES = src/*/$(wildcard *.c)
-OBJECTS = $(SOURCES:.c=.o)
+all: $(EXECUTABLE)
 
-# Targets
-all: $(TARGET)
+$(EXECUTABLE): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS)
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
-
-run: $(TARGET)
-	./$(TARGET)
+re: fclean all
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f $(OBJS)
 
-.PHONY: all run clean
+fclean: clean
+	rm -f $(EXECUTABLE)
+
+.PHONY: all re clean fclean

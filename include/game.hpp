@@ -1,7 +1,8 @@
 #ifndef GAME_HPP
 # define GAME_HPP
 
-# include "battleship.hpp"
+# include "board.hpp"
+# include "types.hpp"
 
 class Game
 {
@@ -15,6 +16,10 @@ public:
 	Game(void);
 
 	void	startGame(void);
+	bool	checkEnd(void);
+	void	playerTurn(void);
+	void	computerTurn(void);
+	void	showEnd(void);
 };
 
 #endif

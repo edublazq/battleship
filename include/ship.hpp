@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "battleship.hpp"
+#ifndef SHIP_HPP
+# define SHIP_HPP
+
+# include "types.hpp"
 
 class	Ship
 {
@@ -33,3 +36,5 @@ class	Ship
 		bool	isDead(void) const;
 		bool	isHere(t_pos pos) const;
 };
+
+#endif
