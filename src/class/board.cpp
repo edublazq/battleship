@@ -35,58 +35,53 @@ Board::Board(int rows, int cols)
 
 
 /* EDU DEL FUTURO POR FAVOR AÑADE QUE LOS BARCOS NO SE SOLAPEN */
-bool	Board::putShip(int size, t_pos pos, t_orientation orientation)
+bool Board::putShip(int size, t_pos pos, t_orientation orientation)
 {
-	if (size > 4 || size <= 0)
-		return (false);
-	if (pos.x >= this->_cols || pos.y >= this->_rows)
-		return (false);
-	if (pos.x < 0 || pos.y < 0)
-		return (false);
+    if (size <= 0 || size > 4)
+        return false;
 
-	//si sumas el size + la pos conoces el final de tu barco
-	if (orientation == VERTICAL)
-	{
-		if (pos.y + size >= _rows)
-			return (false);
-	}
-	else
-	{
-		if (pos.x + size >= _cols)
-			return (false);
-	}
-	//crear barco y añadirlo a la lista, sumando a n_ships ademas
-	Ship	ship(size, orientation, pos);
-	
-	_n_ships++;
-	this->_ships.push_back(ship); //vengo de C y esto es muy comodo
-	return (true);
+    if (pos.x < 0 || pos.y < 0 ||
+        pos.x >= _cols || pos.y >= _rows)
+        return false;
+
+    // comprobar límites reales
+    if (orientation == VERTICAL)
+    {
+        if (pos.y + size > _rows)
+            return false;
+    }
+    else
+    {
+        if (pos.x + size > _cols)
+            return false;
+    }
+
+    // AQUÍ DEBERÍAS COMPROBAR COLISIONES
+    // if (!canPlaceShip(pos, size, orientation))
+    //     return false;
+
+    Ship ship(size, orientation, pos);
+
+    _ships.push_back(ship);
+    _n_ships++;
+
+    return true;
 }
 
-static bool	randShipManager(Board *board, int size)
+static bool randShipManager(Board *board, int size)
 {
-	bool		control;
-	int			attempt;
-	t_pos		pos;
+	t_pos pos;
 
-	control = false;
-	attempt = 0;
-	while (!control && attempt < 1000)
-	{
-		pos.x = std::rand() % board->getCols();
-		pos.y = std::rand() % board->getRows();
-		if (board->putShip(size, pos, HORIZONTAL))
-			control = true;
-		else if (control == board->putShip(size, pos, VERTICAL))
-			control = true;
-		attempt++;
-	}
-	if (attempt == 1000)
-	{
-		puterror("Impossible to put the ships");
-		return (false);
-	}
-	return (true);
+    for (int attempt = 0; attempt < 1000; attempt++)
+    {
+        pos.x = std::rand() % board->getCols();
+        pos.y = std::rand() % board->getRows();
+
+        if (board->putShip(size, pos, HORIZONTAL) || board->putShip(size, pos, VERTICAL))
+            return (true);
+    }
+    puterror("Impossible to put the ships");
+    return (false);
 }
 
 bool	Board::randPutShip(void)
@@ -142,7 +137,7 @@ void	Board::showBoard(bool flag)
 		{
 			for (int j = 0; j < getCols(); j++)
 			{
-				std::cout << GREEN << _board[i][j].toChar() << RESET;
+				std::cout << GREEN << _board[i][j].toChar() << " " <<  RESET;
 			}
 			std::cout << std::endl;
 		}
@@ -157,9 +152,9 @@ void	Board::showBoard(bool flag)
 			{
 				c = _board[i][j].toChar();
 				if (c != 'B')
-					std::cout << GREEN << _board[i][j].toChar() << RESET;
+					std::cout << GREEN << _board[i][j].toChar() << " " << RESET;
 				else
-					std::cout << GREEN << "~" << RESET;
+					std::cout << GREEN << "~" << " " << RESET;
 			}
 			std::cout << std::endl;
 		}

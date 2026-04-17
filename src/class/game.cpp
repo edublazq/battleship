@@ -34,7 +34,8 @@ void Game::playerTurn(void)
             std::cout << BOLD << "Formato: \"col-row\" ejemplo: 2-7" << RESET << std::endl;
             std::cout << "Casilla para atacar: ";
             std::cin >> box;
-
+			if (box.empty())
+				continue ;
             if (box.size() != 3 || !isdigit(box[0]) || box[1] != '-' || !isdigit(box[2]))
             {
                 std::cout << RED << "FORMATO INVALIDO" << RESET << std::endl;
@@ -84,6 +85,9 @@ void	Game::showEnd()
 
 void	Game::startGame()
 {
+	if (this->_computerBoard.randPutShip())
+		std::cout << "estan bien puestos" << std::endl;
+	this->_playerBoard.randPutShip();
 	while (checkEnd() == false)
 	{
 		playerTurn();
