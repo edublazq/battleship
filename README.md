@@ -9,8 +9,8 @@
 | Campo | Valor |
 |-------|-------|
 | **Nombre** | Eduaro Blázquez |
-| **Email** | edblazqu@student.42madrid.com |
-| **Institución** | 42 Madrid |
+| **Email** | edu70347@gmail.com |
+| **Institución** | 42 Madrid & UNIE Universidad|
 
 ---
 
