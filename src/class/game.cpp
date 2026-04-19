@@ -81,10 +81,7 @@ bool Game::playerTurn(void)
 				return (false);
 			}
 			if (box.empty())
-			{
-				std::cin.clear();
-				continue ;
-			}
+				return (false);
             if (box.size() != 3 || !isdigit(box[0]) || box[1] != '-' || !isdigit(box[2]))
             {
                 std::cout << RED << "FORMATO INVALIDO" << RESET << std::endl;
@@ -147,9 +144,8 @@ void	Game::showEnd()
 
 void	Game::startGame()
 {
-	if (this->_computerBoard.randPutShip())
-		std::cout << "estan bien puestos" << std::endl;
 	this->_playerBoard.randPutShip();
+	// Bucle principal del programa
 	while (checkEnd() == false)
 	{
 		if (!playerTurn())
