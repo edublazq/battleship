@@ -17,7 +17,7 @@ public:
 
 	void	startGame(void);
 	bool	checkEnd(void);
-	void	playerTurn(void);
+	bool	playerTurn(void);
 	void	computerTurn(void);
 	void	showEnd(void);
 };
